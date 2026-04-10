@@ -2,7 +2,7 @@ body{
   margin:0;
   font-family:sans-serif;
   display:flex;
-  background:#0f172a;
+  background:linear-gradient(135deg,#0f172a,#020617);
   color:white;
 }
 
@@ -11,53 +11,50 @@ body{
   width:220px;
   background:#020617;
   height:100vh;
-  transition:0.3s;
-  overflow:hidden;
+  transition:0.4s;
 }
 
-.sidebar.collapsed{
-  width:60px;
-}
-
-.sidebar .logo{
-  text-align:center;
-  padding:20px;
-  font-size:24px;
-}
-
-.sidebar ul{
-  list-style:none;
-  padding:0;
-}
+.sidebar.collapsed{width:70px;}
 
 .sidebar li{
   padding:15px;
-  cursor:pointer;
-  display:flex;
+display:flex;
   gap:10px;
+  cursor:pointer;
+  transition:0.3s;
 }
 
-.sidebar.collapsed span{
-  display:none;
+.sidebar li:hover{
+  background:#1e293b;
+  transform:translateX(5px);
 }
+
+.sidebar.collapsed span{display:none;}
 
 /* MAIN */
 .main{
   flex:1;
   padding:20px;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
 }
 
 /* TOPBAR */
 .topbar{
   display:flex;
-  gap:10px;
-  align-items:center;
-}
+  gap:10px;}
 
 .topbar input{
   flex:1;
   padding:10px;
+  border-radius:8px;
+  border:none;
 }
+
+/* SECTIONS */
+section{display:none;}
+section.active{display:block;}
 
 /* STATS */
 .stats{
@@ -67,32 +64,53 @@ body{
 }
 
 /* FORM */
-.form input, .form select{
+.form input,.form select{
   padding:10px;
   margin:5px;
 }
 
+/* BUTTON */
 button{
   padding:10px;
-  cursor:pointer;
-  background:#22c55e;
+  background:linear-gradient(45deg,#6366f1,#22c55e);
   border:none;
-  border-radius:6px;
+  border-radius:8px;
+  cursor:pointer;
+  color:white;
 }
 
-/* job card */
+/* KANBAN */
+.kanban{
+  display:flex;
+  gap:10px;
+}
+
+.column{
+  flex:1;
+  background:#1e293b;
+  padding:10px;
+  border-radius:10px;
+  min-height:200px;
+}
 
 .job{
-  background:#1e293b;
-  padding:15px;
-  margin:10px 0;
-  border-radius:10px;}
+  background:#334155;
+  padding:10px;
+  margin:5px 0;
+  border-radius:8px;
+  cursor:grab;
+}
 
-/* STATUS COLORS */
+/* FOOTER */
+footer{
+  margin-top:auto;
+  text-align:center;
+  padding:10px;
+  opacity:0.6;
+}
 
-.Applied{color:#3b82f6;}
-.Interview{color:#facc15;}
-.Rejected{color:#ef4444;}
-
-.Offer{color:#22c55e;}
-
+/* LIGHT MODE */
+body.light{
+  background:#f1f5f9;
+  color:black;
+}

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Job Tracker Pro</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Job Tracker Pro</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -26,42 +27,61 @@
   <div class="topbar">
     <button id="toggleBtn">☰</button>
     <input type="text" id="search" placeholder="Search jobs...">
+    
+    <!-- moved theme button -->
     <button id="themeToggle">🌙</button>
   </div>
 
-  <!-- STATS -->
-  <div class="stats">
-    <div>Total: <span id="total">0</span></div>
-    <div>Offers: <span id="offers">0</span></div>
-    <div>Rejected: <span id="rejected">0</span></div>
-  </div>
+  <!-- HOME -->
+  <section id="homeSection">
+    <h1>Welcome 🚀</h1>
+    <p>Your personal job tracking dashboard</p>
+    <canvas id="chart"></canvas>
+  </section>
 
-  <!-- FORM -->
-  <div class="form">
-    <input id="company" placeholder="Company">
-    <input id="role" placeholder="Role">
+  <!-- TRACKER -->
+  <section id="trackerSection">
 
-    <select id="status">
-      <option>Applied</option>
-      <option>Interview</option>
-      <option>Rejected</option>
-      <option>Offer</option>
-    </select>
+    <div class="stats">
+      <div>Total: <span id="total">0</span></div>
+      <div>Offers: <span id="offers">0</span></div>
+      <div>Rejected: <span id="rejected">0</span></div>
+    </div>
 
-    <button id="addBtn">Add</button>
-  </div>
+    <div class="form">
+      <input id="company" placeholder="Company">
+      <input id="role" placeholder="Role">
 
-  <!-- FILTER -->
-  <div class="filters">
-    <button data="All">All</button>
-    <button data="Applied">Applied</button>
-    <button data="Interview">Interview</button>
-    <button data="Rejected">Rejected</button>
-    <button data="Offer">Offer</button>
-  </div>
+      <select id="status">
+        <option>Applied</option>
+        <option>Interview</option>
+        <option>Rejected</option>
+        <option>Offer</option>
+      </select>
 
-  <!-- JOB LIST -->
-  <div id="jobList"></div>
+      <button id="addBtn">Add</button>
+      <button id="exportCSV">Export CSV</button>
+    </div>
+
+    <div class="filters">
+      <button data="All">All</button>
+      <button data="Applied">Applied</button>
+      <button data="Interview">Interview</button>
+      <button data="Rejected">Rejected</button>
+      <button data="Offer">Offer</button>
+    </div>
+
+    <!-- KANBAN -->
+    <div class="kanban">
+      <div class="column" data="Applied"><h3>Applied</h3></div>
+      <div class="column" data="Interview"><h3>Interview</h3></div>
+      <div class="column" data="Offer"><h3>Offer</h3></div>
+      <div class="column" data="Rejected"><h3>Rejected</h3></div>
+    </div>
+
+  </section>
+
+  <footer>© 2026 Job Tracker Pro</footer>
 
 </div>
 
