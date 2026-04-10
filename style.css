@@ -80,7 +80,8 @@ button{
   border-radius:6px;
 }
 
-/* JOB CARD */
+/* job card */
+
 .job{
   background:#1e293b;
   padding:15px;
@@ -88,8 +89,10 @@ button{
   border-radius:10px;}
 
 /* STATUS COLORS */
+
 .Applied{color:#3b82f6;}
 .Interview{color:#facc15;}
 .Rejected{color:#ef4444;}
+
 .Offer{color:#22c55e;}
 
