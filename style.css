@@ -1,0 +1,108 @@
+body{
+  margin:0;
+  font-family:sans-serif;
+  background:#0f172a;
+  color:white;
+  transition:0.3s;
+}
+
+.dark{
+  background:#020617;
+}
+
+/* NAV */
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  padding:15px;
+  background:#1e293b;
+}
+
+/* HEADER */
+.header{
+  text-align:center;
+  padding:20px;
+}
+
+/* CONTAINER */
+.container{
+  width:90%;
+  max-width:800px;
+  margin:auto;
+}
+
+/* FORM */
+.form-section input,
+.form-section select{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border-radius:8px;
+  border:none;
+}
+
+button{
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  background:#22c55e;
+}
+
+/* FILTER */
+.filter-section{
+  margin:20px 0;
+}
+
+.filters button{
+  margin:5px;
+}
+
+/* STATS */
+.stats{
+  display:flex;
+  justify-content:space-between;
+  margin:15px 0;
+}
+
+/* JOB CARD */
+.job-card{
+  background:#1e293b;
+  padding:15px;
+  margin:10px 0;
+  border-radius:10px;
+  animation:fadeIn 0.4s;
+}
+
+.job-card p{
+  margin:5px 0;
+}
+
+.job-card button{
+  margin-right:5px;
+}
+
+/* STATUS COLORS */
+.Applied{color:#3b82f6;}
+.Interview{color:#facc15;}
+.Rejected{color:#ef4444;}
+.Offer{color:#22c55e;}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding:20px;
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .stats{
+    flex-direction:column;
+    gap:10px;
+  }
+}

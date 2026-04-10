@@ -2,32 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Job Tracker</title>
+  <title>Job Tracker Pro</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-  <h1>💼 Job Tracker</h1>
-  <button id="themeToggle">🌙</button>
-</nav>
+<!-- SIDEBAR -->
+<div class="sidebar collapsed" id="sidebar">
+  <div class="logo">💼</div>
 
-<!-- HEADER -->
-<header class="header">
-  <h2>Track Your Job Applications Efficiently</h2>
-</header>
+  <ul>
+    <li onclick="navigate('home')">🏠 <span>Home</span></li>
+    <li onclick="navigate('tracker')">📊 <span>Job Tracker</span></li>
+    <li onclick="navigate('account')">👤 <span>Account</span></li>
+    <li onclick="navigate('help')">❓ <span>Help</span></li>
+  </ul>
+</div>
 
 <!-- MAIN -->
-<main class="container">
+<div class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <button id="toggleBtn">☰</button>
+    <input type="text" id="search" placeholder="Search jobs...">
+    <button id="themeToggle">🌙</button>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div>Total: <span id="total">0</span></div>
+    <div>Offers: <span id="offers">0</span></div>
+    <div>Rejected: <span id="rejected">0</span></div>
+  </div>
 
   <!-- FORM -->
-  <section class="form-section">
-    <h3>Add Job</h3>
-
-    <input type="text" id="company" placeholder="Company">
-    <input type="text" id="role" placeholder="Role">
+  <div class="form">
+    <input id="company" placeholder="Company">
+    <input id="role" placeholder="Role">
 
     <select id="status">
       <option>Applied</option>
@@ -36,38 +48,22 @@
       <option>Offer</option>
     </select>
 
-    <button id="addBtn">Add Job</button>
-  </section>
+    <button id="addBtn">Add</button>
+  </div>
 
-  <!-- FILTER + SEARCH -->
-  <section class="filter-section">
-    <input type="text" id="search" placeholder="Search company...">
-
-    <div class="filters">
-      <button data-filter="All">All</button>
-      <button data-filter="Applied">Applied</button>
-      <button data-filter="Interview">Interview</button>
-      <button data-filter="Rejected">Rejected</button>
-      <button data-filter="Offer">Offer</button>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section class="stats">
-    <div>Total: <span id="total">0</span></div>
-    <div>Offers: <span id="offers">0</span></div>
-    <div>Rejected: <span id="rejected">0</span></div>
-  </section>
+  <!-- FILTER -->
+  <div class="filters">
+    <button data="All">All</button>
+    <button data="Applied">Applied</button>
+    <button data="Interview">Interview</button>
+    <button data="Rejected">Rejected</button>
+    <button data="Offer">Offer</button>
+  </div>
 
   <!-- JOB LIST -->
-  <section id="jobList" class="job-list"></section>
+  <div id="jobList"></div>
 
-</main>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <p>© 2026 Job Tracker | Built with ❤️</p>
-</footer>
+</div>
 
 <script src="app.js"></script>
 </body>
