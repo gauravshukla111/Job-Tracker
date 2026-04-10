@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <h1>💼 Job Tracker</h1>
+  <button id="themeToggle">🌙</button>
+</nav>
+
+<!-- HEADER -->
+<header class="header">
+  <h2>Track Your Job Applications Efficiently</h2>
+</header>
+
+<!-- MAIN -->
+<main class="container">
+
+  <!-- FORM -->
+  <section class="form-section">
+    <h3>Add Job</h3>
+
+    <input type="text" id="company" placeholder="Company">
+    <input type="text" id="role" placeholder="Role">
+
+    <select id="status">
+      <option>Applied</option>
+      <option>Interview</option>
+      <option>Rejected</option>
+      <option>Offer</option>
+    </select>
+
+    <button id="addBtn">Add Job</button>
+  </section>
+
+  <!-- FILTER + SEARCH -->
+  <section class="filter-section">
+    <input type="text" id="search" placeholder="Search company...">
+
+    <div class="filters">
+      <button data-filter="All">All</button>
+      <button data-filter="Applied">Applied</button>
+      <button data-filter="Interview">Interview</button>
+      <button data-filter="Rejected">Rejected</button>
+      <button data-filter="Offer">Offer</button>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div>Total: <span id="total">0</span></div>
+    <div>Offers: <span id="offers">0</span></div>
+    <div>Rejected: <span id="rejected">0</span></div>
+  </section>
+
+  <!-- JOB LIST -->
+  <section id="jobList" class="job-list"></section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>© 2026 Job Tracker | Built with ❤️</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
