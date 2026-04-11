@@ -7,6 +7,7 @@ const status = document.getElementById('status');
 
 let jobs = JSON.parse(localStorage.getItem('jobs')) || [];
 let filter = "All";
+let chartInstance = null;
 
 /* SIDEBAR */
 toggleBtn.onclick = ()=> sidebar.classList.toggle('collapsed');
@@ -51,14 +52,21 @@ document.getElementById('addBtn').onclick = ()=>{
 
 /* RENDER */
 function render(){
-  document.querySelectorAll('.column').forEach(col=>col.innerHTML = `<h3>${col.dataset.data}</h3>`);
+  document.querySelectorAll('.column').forEach(col=>{
+    col.innerHTML = `<h3>${col.dataset.data}</h3>`;
+  });
 
   jobs.forEach(j=>{
     if(filter==="All" || j.status===filter){
+
       const div = document.createElement('div');
       div.className='job';
       div.draggable=true;
-      div.innerHTML=`<b>${j.company}</b><p>${j.role}</p>`;
+
+      div.innerHTML=`
+        <b>${j.company}</b>
+        <p>${j.role}</p>
+      `;
 
       div.ondragstart = e=> e.dataTransfer.setData("id", j.id);
 
@@ -93,7 +101,7 @@ document.getElementById('themeToggle').onclick = ()=>{
   document.body.classList.toggle('light');
 };
 
-/* CSV EXPORT */
+/* CSV */
 document.getElementById('exportCSV').onclick = ()=>{
   let csv = "Company,Role,Status\n";
   jobs.forEach(j=>{
@@ -107,16 +115,19 @@ document.getElementById('exportCSV').onclick = ()=>{
   a.click();
 };
 
-/* CHART */
+/* CHART FIX (IMPORTANT) */
 function drawChart(){
   const ctx = document.getElementById('chart');
 
-  new Chart(ctx,{
-    type:'bar',
+  if(chartInstance){
+    chartInstance.destroy();
+  }
+
+  chartInstance = new Chart(ctx,{
+    type:'doughnut',
     data:{
       labels:["Applied","Interview","Offer","Rejected"],
-      datasets:[{
-        label:'Jobs',
+       datasets:[{
         data:[
           jobs.filter(j=>j.status==="Applied").length,
           jobs.filter(j=>j.status==="Interview").length,
