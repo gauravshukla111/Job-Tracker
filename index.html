@@ -8,7 +8,6 @@
 </head>
 <body>
 
-<!-- SIDEBAR -->
 <div class="sidebar collapsed" id="sidebar">
   <div class="logo">JT</div>
 
@@ -20,10 +19,8 @@
   </ul>
 </div>
 
-<!-- MAIN -->
 <div class="main">
 
-  <!-- NAVBAR -->
   <div class="topbar">
     <button id="toggleBtn">☰</button>
     <input type="text" id="search" placeholder="Search jobs...">
@@ -35,8 +32,13 @@
     <h1>Dashboard</h1>
 
     <div class="charts">
-      <canvas id="doughnutChart"></canvas>
-      <canvas id="barChart"></canvas>
+      <div class="chart-box">
+        <canvas id="doughnutChart"></canvas>
+      </div>
+
+      <div class="chart-box">
+        <canvas id="barChart"></canvas>
+      </div>
     </div>
   </section>
 

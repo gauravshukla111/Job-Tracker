@@ -8,15 +8,12 @@ const status = document.getElementById('status');
 let jobs = JSON.parse(localStorage.getItem('jobs')) || [];
 let chart1, chart2;
 
-/* SIDEBAR */
 toggleBtn.onclick = ()=> sidebar.classList.toggle('collapsed');
 
-/* SAVE */
 function save(){
   localStorage.setItem('jobs', JSON.stringify(jobs));
 }
 
-/* NAVIGATION */
 function navigate(page){
   document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
 
@@ -31,7 +28,6 @@ function navigate(page){
 }
 navigate('home');
 
-/* ADD */
 document.getElementById('addBtn').onclick = ()=>{
   if(!company.value || !role.value) return alert("Fill fields");
 
@@ -49,7 +45,6 @@ document.getElementById('addBtn').onclick = ()=>{
   role.value='';
 };
 
-/* RENDER */
 function render(){
   document.querySelectorAll('.column').forEach(col=>{
     col.innerHTML = `<h3>${col.dataset.status}</h3>`;
@@ -70,7 +65,6 @@ function render(){
   stats();
 }
 
-/* DRAG */
 document.querySelectorAll('.column').forEach(col=>{
   col.ondragover = e=>e.preventDefault();
 
@@ -82,19 +76,16 @@ document.querySelectorAll('.column').forEach(col=>{
   };
 });
 
-/* STATS */
 function stats(){
   document.getElementById('total').innerText = jobs.length;
   document.getElementById('offers').innerText = jobs.filter(j=>j.status==="Offer").length;
   document.getElementById('rejected').innerText = jobs.filter(j=>j.status==="Rejected").length;
 }
 
-/* THEME */
 document.getElementById('themeToggle').onclick = ()=>{
   document.body.classList.toggle('light');
 };
 
-/* CSV */
 document.getElementById('exportCSV').onclick = ()=>{
   let csv = "Company,Role,Status\n";
   jobs.forEach(j=>{
@@ -108,7 +99,7 @@ document.getElementById('exportCSV').onclick = ()=>{
   a.click();
 };
 
-/* CHARTS */
+/* 🔥 FINAL CHART FIX */
 function drawCharts(){
   const data = [
     jobs.filter(j=>j.status==="Applied").length,
@@ -120,11 +111,25 @@ function drawCharts(){
   if(chart1) chart1.destroy();
   if(chart2) chart2.destroy();
 
+  const ctx = document.getElementById('barChart').getContext('2d');
+  const gradient = ctx.createLinearGradient(0,0,0,300);
+  gradient.addColorStop(0,"#6366f1");
+  gradient.addColorStop(1,"#22c55e");
+
   chart1 = new Chart(document.getElementById('doughnutChart'),{
     type:'doughnut',
     data:{
       labels:["Applied","Interview","Offer","Rejected"],
-      datasets:[{data}]
+      datasets:[{
+        data:data,
+        backgroundColor:["#6366f1","#22c55e","#f59e0b","#ef4444"],
+        borderWidth:0
+      }]
+    },
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      cutout:"65%"
     }
   });
 
@@ -132,10 +137,17 @@ function drawCharts(){
     type:'bar',
     data:{
       labels:["Applied","Interview","Offer","Rejected"],
-      datasets:[{data}]
+      datasets:[{
+        data:data,
+        backgroundColor:gradient,
+        borderRadius:8
+      }]
+    },
+    options:{
+      responsive:true,
+      maintainAspectRatio:false
     }
   });
 }
 
-/* INIT */
 render();
