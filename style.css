@@ -6,7 +6,7 @@ body{
   color:#e5e7eb;
 }
 
-/* SIDEBAR */
+
 .sidebar{
   width:240px;
   background:#111827;
@@ -44,7 +44,7 @@ body{
 
 .sidebar.collapsed span{display:none;}
 
-/* MAIN */
+
 .main{
   flex:1;
   padding:20px;
@@ -53,7 +53,7 @@ body{
   min-height:100vh;
 }
 
-/* TOPBAR */
+
 .topbar{
   display:flex;
   gap:10px;
@@ -69,11 +69,12 @@ body{
   color:white;
 }
 
-/* SECTION */
+
 section{display:none;}
 section.active{display:block;}
 
-/* ===== CHART PREMIUM ===== */
+/* charts */
+
 .charts{
   display:flex;
   gap:20px;
@@ -102,7 +103,7 @@ section.active{display:block;}
   height:100% !important;
 }
 
-/* STATS */
+
 .stats{
   display:flex;
   gap:20px;
@@ -116,7 +117,7 @@ section.active{display:block;}
   text-align:center;
 }
 
-/* FORM */
+/* form */
 .form input,.form select{
   padding:10px;
   margin:5px;
@@ -126,7 +127,7 @@ section.active{display:block;}
   color:white;
 }
 
-/* BUTTON */
+/* button */
 button{
   padding:10px;
   border:none;
@@ -135,7 +136,7 @@ button{
   color:white;
 }
 
-/* KANBAN */
+
 .kanban{
   display:flex;
   gap:15px;
@@ -146,9 +147,9 @@ button{
   flex:1;
   background:#111827;
   padding:15px;
-  border-radius:12px;
-}
-/* FILTER */
+  border-radius:12px;}
+  
+/* filter */
 .filters{
   margin:10px 0;
 }
@@ -156,7 +157,7 @@ button{
   margin:5px;
 }
 
-/* SORT */
+/* sort */
 #sort{
   padding:10px;
   border-radius:6px;
@@ -165,7 +166,7 @@ button{
   color:white;
 }
 
-/* LIGHT MODE */
+/* light mode */
 body.light{
   background:#f9fafb;
   color:black;
@@ -190,7 +191,7 @@ body.light .chart-box{
   border-radius:8px;
 }
 
-/* FOOTER */
+/* footer */
 footer{
   margin-top:auto;
   text-align:center;
