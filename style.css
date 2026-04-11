@@ -148,8 +148,9 @@ button{
   background:#111827;
   padding:15px;
   border-radius:12px;}
-  
+
 /* filter */
+
 .filters{
   margin:10px 0;
 }
@@ -158,6 +159,7 @@ button{
 }
 
 /* sort */
+
 #sort{
   padding:10px;
   border-radius:6px;
@@ -167,10 +169,10 @@ button{
 }
 
 /* light mode */
+
 body.light{
   background:#f9fafb;
-  color:black;
-}
+  color:black;}
 
 body.light .sidebar{
   background:#e5e7eb;

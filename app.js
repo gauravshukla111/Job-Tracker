@@ -18,6 +18,7 @@ toggleBtn.onclick = ()=> sidebar.classList.toggle('collapsed');
 /* save data */
 function save(){
   localStorage.setItem('jobs', JSON.stringify(jobs));
+  
 }
 
 /* navbar */
