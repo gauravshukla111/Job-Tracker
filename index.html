@@ -8,32 +8,40 @@
 </head>
 <body>
 
+<!-- SIDEBAR -->
 <div class="sidebar collapsed" id="sidebar">
-  <div class="logo">💼</div>
+  <div class="logo">JT</div>
 
   <ul>
     <li onclick="navigate('home')">🏠 <span>Home</span></li>
-    <li onclick="navigate('tracker')">📊 <span>Job Tracker</span></li>
+    <li onclick="navigate('tracker')">📊 <span>Tracker</span></li>
     <li onclick="navigate('account')">👤 <span>Account</span></li>
     <li onclick="navigate('help')">❓ <span>Help</span></li>
   </ul>
 </div>
 
- <div class="main">
+<!-- MAIN -->
+<div class="main">
 
-   <div class="topbar">
+  <!-- NAVBAR -->
+  <div class="topbar">
     <button id="toggleBtn">☰</button>
-     <input type="text" id="search" placeholder="Search jobs...">
+    <input type="text" id="search" placeholder="Search jobs...">
     <button id="themeToggle">🌙</button>
-   </div>
+  </div>
 
-   <section id="homeSection">
-    <h1>Dashboard Overview 🚀</h1>
-    <p>Track your job applications smartly</p>
-    <canvas id="chart" class="element.style"></canvas>
+  <!-- HOME -->
+  <section id="homeSection">
+    <h1>Dashboard</h1>
+
+    <div class="charts">
+      <canvas id="doughnutChart"></canvas>
+      <canvas id="barChart"></canvas>
+    </div>
   </section>
 
-   <section id="trackerSection">
+  <!-- TRACKER -->
+  <section id="trackerSection">
 
     <div class="stats">
       <div class="card">Total <span id="total">0</span></div>
@@ -53,23 +61,15 @@
       </select>
 
       <button id="addBtn">Add</button>
-      <button id="exportCSV">Export CSV</button>
+      <button id="exportCSV">Export</button>
     </div>
 
-    <div class="filters">
-      <button data="All">All</button>
-      <button data="Applied">Applied</button>
-      <button data="Interview">Interview</button>
-      <button data="Rejected">Rejected</button>
-      <button data="Offer">Offer</button>
+    <div class="kanban">
+      <div class="column" data-status="Applied"><h3>Applied</h3></div>
+      <div class="column" data-status="Interview"><h3>Interview</h3></div>
+      <div class="column" data-status="Offer"><h3>Offer</h3></div>
+      <div class="column" data-status="Rejected"><h3>Rejected</h3></div>
     </div>
-
-     <div class="kanban">
-      <div class="column" data="Applied"><h3>Applied</h3></div>
-      <div class="column" data="Interview"><h3>Interview</h3></div>
-      <div class="column" data="Offer"><h3>Offer</h3></div>
-      <div class="column" data="Rejected"><h3>Rejected</h3></div>
-     </div>
 
   </section>
 

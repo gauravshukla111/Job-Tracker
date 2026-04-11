@@ -6,8 +6,7 @@ const role = document.getElementById('role');
 const status = document.getElementById('status');
 
 let jobs = JSON.parse(localStorage.getItem('jobs')) || [];
-let filter = "All";
-let chartInstance = null;
+let chart1, chart2;
 
 /* SIDEBAR */
 toggleBtn.onclick = ()=> sidebar.classList.toggle('collapsed');
@@ -23,7 +22,7 @@ function navigate(page){
 
   if(page === 'home'){
     document.getElementById('homeSection').classList.add('active');
-    drawChart();
+    drawCharts();
   }
   if(page === 'tracker'){
     document.getElementById('trackerSection').classList.add('active');
@@ -53,25 +52,19 @@ document.getElementById('addBtn').onclick = ()=>{
 /* RENDER */
 function render(){
   document.querySelectorAll('.column').forEach(col=>{
-    col.innerHTML = `<h3>${col.dataset.data}</h3>`;
+    col.innerHTML = `<h3>${col.dataset.status}</h3>`;
   });
 
   jobs.forEach(j=>{
-    if(filter==="All" || j.status===filter){
+    const div = document.createElement('div');
+    div.className='job';
+    div.draggable=true;
 
-      const div = document.createElement('div');
-      div.className='job';
-      div.draggable=true;
+    div.innerHTML=`<b>${j.company}</b><p>${j.role}</p>`;
 
-      div.innerHTML=`
-        <b>${j.company}</b>
-        <p>${j.role}</p>
-      `;
+    div.ondragstart = e=> e.dataTransfer.setData("id", j.id);
 
-      div.ondragstart = e=> e.dataTransfer.setData("id", j.id);
-
-      document.querySelector(`.column[data="${j.status}"]`).appendChild(div);
-    }
+    document.querySelector(`.column[data-status="${j.status}"]`).appendChild(div);
   });
 
   stats();
@@ -83,7 +76,7 @@ document.querySelectorAll('.column').forEach(col=>{
 
   col.ondrop = e=>{
     const id = e.dataTransfer.getData("id");
-    jobs = jobs.map(j=> j.id==id ? {...j,status:col.dataset.data} : j);
+    jobs = jobs.map(j=> j.id==id ? {...j,status:col.dataset.status} : j);
     save();
     render();
   };
@@ -115,26 +108,31 @@ document.getElementById('exportCSV').onclick = ()=>{
   a.click();
 };
 
-/* CHART FIX (IMPORTANT) */
-function drawChart(){
-  const ctx = document.getElementById('chart');
+/* CHARTS */
+function drawCharts(){
+  const data = [
+    jobs.filter(j=>j.status==="Applied").length,
+    jobs.filter(j=>j.status==="Interview").length,
+    jobs.filter(j=>j.status==="Offer").length,
+    jobs.filter(j=>j.status==="Rejected").length
+  ];
 
-  if(chartInstance){
-    chartInstance.destroy();
-  }
+  if(chart1) chart1.destroy();
+  if(chart2) chart2.destroy();
 
-  chartInstance = new Chart(ctx,{
+  chart1 = new Chart(document.getElementById('doughnutChart'),{
     type:'doughnut',
     data:{
       labels:["Applied","Interview","Offer","Rejected"],
-       datasets:[{
-        data:[
-          jobs.filter(j=>j.status==="Applied").length,
-          jobs.filter(j=>j.status==="Interview").length,
-          jobs.filter(j=>j.status==="Offer").length,
-          jobs.filter(j=>j.status==="Rejected").length
-        ]
-      }]
+      datasets:[{data}]
+    }
+  });
+
+  chart2 = new Chart(document.getElementById('barChart'),{
+    type:'bar',
+    data:{
+      labels:["Applied","Interview","Offer","Rejected"],
+      datasets:[{data}]
     }
   });
 }
