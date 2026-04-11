@@ -1,162 +1,5 @@
-// const sidebar = document.getElementById('sidebar');
-// const toggleBtn = document.getElementById('toggleBtn');
-
-// const company = document.getElementById('company');
-// const role = document.getElementById('role');
-// const status = document.getElementById('status');
-
-// let jobs = JSON.parse(localStorage.getItem('jobs')) || [];
-// let chart1, chart2;
-
-// toggleBtn.onclick = ()=> sidebar.classList.toggle('collapsed');
-
-// function save(){
-//   localStorage.setItem('jobs', JSON.stringify(jobs));
-// }
-
-// function navigate(page){
-//   document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
-
-//   if(page === 'home'){
-//     document.getElementById('homeSection').classList.add('active');
-//     drawCharts();
-//   }
-//   if(page === 'tracker'){
-//     document.getElementById('trackerSection').classList.add('active');
-//     render();
-//   }
-// }
-// navigate('home');
-
-// document.getElementById('addBtn').onclick = ()=>{
-//   if(!company.value || !role.value) return alert("Fill fields");
-
-//   jobs.push({
-//     id:Date.now(),
-//     company:company.value,
-//     role:role.value,
-//     status:status.value
-//   });
-
-//   save();
-//   render();
-
-//   company.value='';
-//   role.value='';
-// };
-
-// function render(){
-//   document.querySelectorAll('.column').forEach(col=>{
-//     col.innerHTML = `<h3>${col.dataset.status}</h3>`;
-//   });
-
-//   jobs.forEach(j=>{
-//     const div = document.createElement('div');
-//     div.className='job';
-//     div.draggable=true;
-
-//     div.innerHTML=`<b>${j.company}</b><p>${j.role}</p>`;
-
-//     div.ondragstart = e=> e.dataTransfer.setData("id", j.id);
-
-//     document.querySelector(`.column[data-status="${j.status}"]`).appendChild(div);
-//   });
-
-//   stats();
-// }
-
-// document.querySelectorAll('.column').forEach(col=>{
-//   col.ondragover = e=>e.preventDefault();
-
-//   col.ondrop = e=>{
-//     const id = e.dataTransfer.getData("id");
-//     jobs = jobs.map(j=> j.id==id ? {...j,status:col.dataset.status} : j);
-//     save();
-//     render();
-//   };
-// });
-
-// function stats(){
-//   document.getElementById('total').innerText = jobs.length;
-//   document.getElementById('offers').innerText = jobs.filter(j=>j.status==="Offer").length;
-//   document.getElementById('rejected').innerText = jobs.filter(j=>j.status==="Rejected").length;
-// }
-
-// document.getElementById('themeToggle').onclick = ()=>{
-//   document.body.classList.toggle('light');
-// };
-
-// document.getElementById('exportCSV').onclick = ()=>{
-//   let csv = "Company,Role,Status\n";
-//   jobs.forEach(j=>{
-//     csv += `${j.company},${j.role},${j.status}\n`;
-//   });
-
-//   const blob = new Blob([csv]);
-//   const a = document.createElement('a');
-//   a.href = URL.createObjectURL(blob);
-//   a.download = "jobs.csv";
-//   a.click();
-// };
-
-// /* 🔥 FINAL CHART FIX */
-// function drawCharts(){
-//   const data = [
-//     jobs.filter(j=>j.status==="Applied").length,
-//     jobs.filter(j=>j.status==="Interview").length,
-//     jobs.filter(j=>j.status==="Offer").length,
-//     jobs.filter(j=>j.status==="Rejected").length
-//   ];
-
-//   if(chart1) chart1.destroy();
-//   if(chart2) chart2.destroy();
-
-//   const ctx = document.getElementById('barChart').getContext('2d');
-//   const gradient = ctx.createLinearGradient(0,0,0,300);
-//   gradient.addColorStop(0,"#6366f1");
-//   gradient.addColorStop(1,"#22c55e");
-
-//   chart1 = new Chart(document.getElementById('doughnutChart'),{
-//     type:'doughnut',
-//     data:{
-//       labels:["Applied","Interview","Offer","Rejected"],
-//       datasets:[{
-//         data:data,
-//         backgroundColor:["#6366f1","#22c55e","#f59e0b","#ef4444"],
-//         borderWidth:0
-//       }]
-//     },
-//     options:{
-//       responsive:true,
-//       maintainAspectRatio:false,
-//       cutout:"65%"
-//     }
-//   });
-
-//   chart2 = new Chart(document.getElementById('barChart'),{
-//     type:'bar',
-//     data:{
-//       labels:["Applied","Interview","Offer","Rejected"],
-//       datasets:[{
-//         data:data,
-//         backgroundColor:gradient,
-//         borderRadius:8
-//       }]
-//     },
-//     options:{
-//       responsive:true,
-//       maintainAspectRatio:false
-//     }
-//   });
-// }
-
-// render();
-
-
-
 const sidebar = document.getElementById('sidebar');
 const toggleBtn = document.getElementById('toggleBtn');
-
 const company = document.getElementById('company');
 const role = document.getElementById('role');
 const status = document.getElementById('status');
@@ -169,15 +12,15 @@ let chart1, chart2;
 let filter = "All";
 let sortType = "latest";
 
-/* SIDEBAR */
+/* sidebar logic */
 toggleBtn.onclick = ()=> sidebar.classList.toggle('collapsed');
 
-/* SAVE */
+/* save data */
 function save(){
   localStorage.setItem('jobs', JSON.stringify(jobs));
 }
 
-/* NAV */
+/* navbar */
 function navigate(page){
   document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
 
@@ -192,7 +35,7 @@ function navigate(page){
 }
 navigate('home');
 
-/* ADD */
+/* adding data logic */
 document.getElementById('addBtn').onclick = ()=>{
   if(!company.value || !role.value) return alert("Fill fields");
 
@@ -210,7 +53,7 @@ document.getElementById('addBtn').onclick = ()=>{
   role.value='';
 };
 
-/* FILTER BUTTON */
+/* filter button logic */
 document.querySelectorAll('.filters button').forEach(btn=>{
   btn.onclick = ()=>{
     filter = btn.getAttribute('data');
@@ -218,16 +61,16 @@ document.querySelectorAll('.filters button').forEach(btn=>{
   };
 });
 
-/* SORT */
+/* sort */
 sortSelect.onchange = ()=>{
   sortType = sortSelect.value;
   render();
 };
 
-/* SEARCH */
+/* search data */
 search.oninput = render;
 
-/* SORT LOGIC */
+/* sort logic */
 function sortJobs(arr){
   if(sortType==="latest") return arr.sort((a,b)=>b.id-a.id);
   if(sortType==="oldest") return arr.sort((a,b)=>a.id-b.id);
@@ -235,7 +78,7 @@ function sortJobs(arr){
   return arr;
 }
 
-/* RENDER */
+/* render data */
 function render(){
   document.querySelectorAll('.column').forEach(col=>{
     col.innerHTML = `<h3>${col.dataset.status}</h3>`;
@@ -263,7 +106,7 @@ function render(){
   stats();
 }
 
-/* DRAG */
+/* drag */
 document.querySelectorAll('.column').forEach(col=>{
   col.ondragover = e=>e.preventDefault();
 
@@ -275,14 +118,14 @@ document.querySelectorAll('.column').forEach(col=>{
   };
 });
 
-/* STATS */
+/* stats */
 function stats(){
   document.getElementById('total').innerText = jobs.length;
   document.getElementById('offers').innerText = jobs.filter(j=>j.status==="Offer").length;
   document.getElementById('rejected').innerText = jobs.filter(j=>j.status==="Rejected").length;
 }
 
-/* THEME */
+/* theme light/dark */
 const themeBtn = document.getElementById('themeToggle');
 
 themeBtn.onclick = ()=>{
@@ -295,7 +138,7 @@ themeBtn.onclick = ()=>{
   }
 };
 
-/* CSV */
+/* convert into csv logic */
 document.getElementById('exportCSV').onclick = ()=>{
   let csv = "Company,Role,Status\n";
   jobs.forEach(j=>{
@@ -309,7 +152,7 @@ document.getElementById('exportCSV').onclick = ()=>{
   a.click();
 };
 
-/* CHART */
+/* chart */
 function drawCharts(){
   const data = [
     jobs.filter(j=>j.status==="Applied").length,
@@ -340,5 +183,5 @@ function drawCharts(){
   });
 }
 
-/* INIT */
+
 render();
