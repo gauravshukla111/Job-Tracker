@@ -7,10 +7,13 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+  
+<!-- sidebar and logo section -->
 
 <div class="sidebar collapsed" id="sidebar">
   <div class="logo">JT</div>
 
+<!-- sidebar -->
   <ul>
     <li onclick="navigate('home')">🏠 <span>Home</span></li>
     <li onclick="navigate('tracker')">📊 <span>Tracker</span></li>
@@ -24,10 +27,18 @@
   <div class="topbar">
     <button id="toggleBtn">☰</button>
     <input type="text" id="search" placeholder="Search jobs...">
+
+    <!-- sort section -->
+    <select id="sort">
+      <option value="latest">Latest</option>
+      <option value="oldest">Oldest</option>
+      <option value="company">Company</option>
+    </select>
+
     <button id="themeToggle">🌙</button>
   </div>
 
-  <!-- HOME -->
+  <!-- home section -->
   <section id="homeSection">
     <h1>Dashboard</h1>
 
@@ -42,7 +53,7 @@
     </div>
   </section>
 
-  <!-- TRACKER -->
+  <!-- tracker section -->
   <section id="trackerSection">
 
     <div class="stats">
@@ -66,6 +77,15 @@
       <button id="exportCSV">Export</button>
     </div>
 
+    <!-- filter section -->
+    <div class="filters">
+      <button data="All">All</button>
+      <button data="Applied">Applied</button>
+      <button data="Interview">Interview</button>
+      <button data="Rejected">Rejected</button>
+      <button data="Offer">Offer</button>
+    </div>
+
     <div class="kanban">
       <div class="column" data-status="Applied"><h3>Applied</h3></div>
       <div class="column" data-status="Interview"><h3>Interview</h3></div>
@@ -75,7 +95,9 @@
 
   </section>
 
-  <footer>© 2026 Job Tracker Pro</footer>
+  <!-- footer section -->
+
+  <footer>© 2026 Job Tracker Made By-Gaurav</footer>
 
 </div>
 

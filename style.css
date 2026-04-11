@@ -148,6 +148,40 @@ button{
   padding:15px;
   border-radius:12px;
 }
+/* FILTER */
+.filters{
+  margin:10px 0;
+}
+.filters button{
+  margin:5px;
+}
+
+/* SORT */
+#sort{
+  padding:10px;
+  border-radius:6px;
+  border:none;
+  background:#1f2937;
+  color:white;
+}
+
+/* LIGHT MODE */
+body.light{
+  background:#f9fafb;
+  color:black;
+}
+
+body.light .sidebar{
+  background:#e5e7eb;
+}
+
+body.light .card,
+body.light .column,
+body.light .job,
+body.light .chart-box{
+  background:white;
+  color:black;
+}
 
 .job{
   background:#1f2937;
