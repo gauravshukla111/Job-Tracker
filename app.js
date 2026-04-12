@@ -12,32 +12,36 @@ let chart1, chart2;
 let filter = "All";
 let sortType = "latest";
 
-/* sidebar logic */
+/* sidebar */
 toggleBtn.onclick = ()=> sidebar.classList.toggle('collapsed');
 
-/* save data */
+/* save */
 function save(){
-  
   localStorage.setItem('jobs', JSON.stringify(jobs));
-  
 }
 
-/* navbar */
+/* navigation*/
 function navigate(page){
   document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
 
   if(page === 'home'){
     document.getElementById('homeSection').classList.add('active');
-    drawCharts();
+
+    setTimeout(drawCharts, 150);
   }
+
   if(page === 'tracker'){
     document.getElementById('trackerSection').classList.add('active');
     render();
   }
 }
-navigate('home');
 
-/* adding data logic */
+/* INIT */
+window.addEventListener("load", () => {
+  navigate('home');
+});
+
+/* add */
 document.getElementById('addBtn').onclick = ()=>{
   if(!company.value || !role.value) return alert("Fill fields");
 
@@ -55,7 +59,7 @@ document.getElementById('addBtn').onclick = ()=>{
   role.value='';
 };
 
-/* filter button logic */
+/* filter */
 document.querySelectorAll('.filters button').forEach(btn=>{
   btn.onclick = ()=>{
     filter = btn.getAttribute('data');
@@ -64,18 +68,15 @@ document.querySelectorAll('.filters button').forEach(btn=>{
 });
 
 /* sort */
-
 sortSelect.onchange = ()=>{
   sortType = sortSelect.value;
   render();
 };
 
-/* search data */
-
+/* search */
 search.oninput = render;
 
 /* sort logic */
-
 function sortJobs(arr){
   if(sortType==="latest") return arr.sort((a,b)=>b.id-a.id);
   if(sortType==="oldest") return arr.sort((a,b)=>a.id-b.id);
@@ -83,7 +84,7 @@ function sortJobs(arr){
   return arr;
 }
 
-/* render data */
+/* render */
 function render(){
   document.querySelectorAll('.column').forEach(col=>{
     col.innerHTML = `<h3>${col.dataset.status}</h3>`;
@@ -130,20 +131,15 @@ function stats(){
   document.getElementById('rejected').innerText = jobs.filter(j=>j.status==="Rejected").length;
 }
 
-/* theme light/dark */
+/* theme */
 const themeBtn = document.getElementById('themeToggle');
 
 themeBtn.onclick = ()=>{
   document.body.classList.toggle('light');
-
-  if(document.body.classList.contains('light')){
-    themeBtn.innerText = "🌞";
-  } else {
-    themeBtn.innerText = "🌙";
-  }
+  themeBtn.innerText = document.body.classList.contains('light') ? "🌞" : "🌙";
 };
 
-/* convert into csv logic */
+/* CSV */
 document.getElementById('exportCSV').onclick = ()=>{
   let csv = "Company,Role,Status\n";
   jobs.forEach(j=>{
@@ -157,7 +153,7 @@ document.getElementById('exportCSV').onclick = ()=>{
   a.click();
 };
 
-/* chart */
+// chart
 function drawCharts(){
   const data = [
     jobs.filter(j=>j.status==="Applied").length,
@@ -166,27 +162,51 @@ function drawCharts(){
     jobs.filter(j=>j.status==="Rejected").length
   ];
 
+  const safeData = data.every(v => v === 0) ? [1,1,1,1] : data;
+
   if(chart1) chart1.destroy();
   if(chart2) chart2.destroy();
+
+  const ctx = document.getElementById('barChart').getContext('2d');
+  const gradient = ctx.createLinearGradient(0,0,0,300);
+  gradient.addColorStop(0,"#6366f1");
+  gradient.addColorStop(1,"#22c55e");
 
   chart1 = new Chart(document.getElementById('doughnutChart'),{
     type:'doughnut',
     data:{
       labels:["Applied","Interview","Offer","Rejected"],
-      datasets:[{data}]
+      datasets:[{
+        data:safeData,
+        backgroundColor:["#6366f1","#22c55e","#f59e0b","#ef4444"],
+        borderWidth:0
+      }]
     },
-    options:{responsive:true,maintainAspectRatio:false}
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      cutout:"65%"
+    }
   });
 
   chart2 = new Chart(document.getElementById('barChart'),{
     type:'bar',
     data:{
       labels:["Applied","Interview","Offer","Rejected"],
-      datasets:[{data}]
+      datasets:[{
+        data:safeData,
+        backgroundColor:gradient,
+        borderRadius:8
+      }]
     },
-    options:{responsive:true,maintainAspectRatio:false}
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false}
+      }
+    }
   });
 }
-
 
 render();

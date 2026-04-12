@@ -8,19 +8,15 @@
 </head>
 <body>
 
-<!-- sidebar and logo section -->
-
 <div class="sidebar collapsed" id="sidebar">
   <div class="logo">JT</div>
 
-<!-- sidebar -->
   <ul>
     <li onclick="navigate('home')">🏠 <span>Home</span></li>
     <li onclick="navigate('tracker')">📊 <span>Tracker</span></li>
     <li onclick="navigate('account')">👤 <span>Account</span></li>
     <li onclick="navigate('help')">❓ <span>Help</span></li>
   </ul>
-  
 </div>
 
 <div class="main">
@@ -28,8 +24,6 @@
   <div class="topbar">
     <button id="toggleBtn">☰</button>
     <input type="text" id="search" placeholder="Search jobs...">
-
-    <!-- sort section -->
 
     <select id="sort">
       <option value="latest">Latest</option>
@@ -39,8 +33,6 @@
 
     <button id="themeToggle">🌙</button>
   </div>
-
-  <!-- home section -->
 
   <section id="homeSection">
     <h1>Dashboard</h1>
@@ -55,8 +47,6 @@
       </div>
     </div>
   </section>
-
-  <!-- tracker section -->
 
   <section id="trackerSection">
 
@@ -81,7 +71,6 @@
       <button id="exportCSV">Export</button>
     </div>
 
-    <!-- filter section -->
 
     <div class="filters">
       <button data="All">All</button>
@@ -100,11 +89,9 @@
 
   </section>
 
-  <!-- footer section -->
-
+  
   <footer>© 2026 Job Tracker Made By-Gaurav</footer>
 
-  
 </div>
 
 <script src="app.js"></script>
