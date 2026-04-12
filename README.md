@@ -6,7 +6,6 @@
 ![Status](https://img.shields.io/badge/Status-Active-success)
 ![GitHub stars](https://img.shields.io/github/stars/your-username/job-tracker-pro?style=for-the-badge)
 ![GitHub forks](https://img.shields.io/github/forks/your-username/job-tracker-pro?style=for-the-badge)
-![GitHub issues](https://img.shields.io/github/issues/your-username/job-tracker-pro?style=for-the-badge)
 
 🔗 **Live Demo:** https://job-tracker-app-sandy-xi.vercel.app/
 
