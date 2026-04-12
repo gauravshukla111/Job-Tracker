@@ -1,9 +1,12 @@
 # 🚀 Job Tracker
 
+![HTML](https://img.shields.io/badge/HTML-5-orange)
+![CSS](https://img.shields.io/badge/CSS-3-blue)
+![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-yellow)
+![Status](https://img.shields.io/badge/Status-Active-success)
 ![GitHub stars](https://img.shields.io/github/stars/your-username/job-tracker-pro?style=for-the-badge)
 ![GitHub forks](https://img.shields.io/github/forks/your-username/job-tracker-pro?style=for-the-badge)
 ![GitHub issues](https://img.shields.io/github/issues/your-username/job-tracker-pro?style=for-the-badge)
-![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)
 
 🔗 **Live Demo:** https://job-tracker-app-sandy-xi.vercel.app/
 
@@ -18,15 +21,6 @@ This is not just a CRUD app — it includes:
 - Drag & Drop system
 - Chart-based analytics
 - UI/UX focus
-
----
-
-![App Demo](./demo.gif)
-
-👉 GIF kaise banaye:
-- Screen record using **OBS / ScreenToGif**
-- Save as `demo.gif`
-- Put in root folder
 
 ---
 
