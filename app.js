@@ -17,6 +17,7 @@ toggleBtn.onclick = ()=> sidebar.classList.toggle('collapsed');
 
 /* save data */
 function save(){
+  
   localStorage.setItem('jobs', JSON.stringify(jobs));
   
 }
@@ -63,15 +64,18 @@ document.querySelectorAll('.filters button').forEach(btn=>{
 });
 
 /* sort */
+
 sortSelect.onchange = ()=>{
   sortType = sortSelect.value;
   render();
 };
 
 /* search data */
+
 search.oninput = render;
 
 /* sort logic */
+
 function sortJobs(arr){
   if(sortType==="latest") return arr.sort((a,b)=>b.id-a.id);
   if(sortType==="oldest") return arr.sort((a,b)=>a.id-b.id);
